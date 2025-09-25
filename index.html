@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetag Advanced Rotation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <h1>🔄 Monetag Pro Rotator</h1>
+                <p>Advanced IP & Device Rotation System</p>
+            </div>
+            <div class="status-indicators">
+                <div class="status-item">
+                    <span class="status-dot active"></span>
+                    System Ready
+                </div>
+                <div class="status-item">
+                    <span class="status-dot" id="sdkStatusDot"></span>
+                    <span id="sdkStatusText">SDK Checking...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h3>🛠️ Control Center</h3>
+            <div class="button-group">
+                <button class="btn btn-start" onclick="rotationSystem.start()">
+                    ▶️ Start Rotation
+                </button>
+                <button class="btn btn-stop" onclick="rotationSystem.stop()">
+                    ⏹️ Stop Rotation
+                </button>
+                <button class="btn btn-rotate" onclick="rotationSystem.rotateNow()">
+                    🔄 Rotate Now
+                </button>
+                <button class="btn btn-reset" onclick="rotationSystem.reset()">
+                    🔃 Reset System
+                </button>
+            </div>
+            
+            <div class="settings">
+                <label>Rotation Interval (minutes):</label>
+                <input type="number" id="intervalInput" value="5" min="1" max="60">
+                <button onclick="rotationSystem.updateInterval()">Update</button>
+            </div>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🌐</div>
+                <div class="stat-value" id="currentIP">192.168.1.1</div>
+                <div class="stat-label">Current IP</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📱</div>
+                <div class="stat-value" id="deviceType">Desktop</div>
+                <div class="stat-label">Device Type</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔁</div>
+                <div class="stat-value" id="rotationCount">0</div>
+                <div class="stat-label">Rotations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value" id="nextRotation">5:00</div>
+                <div class="stat-label">Next Rotation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🕒</div>
+                <div class="stat-value" id="uptime">00:00:00</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value" id="successRate">100%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+
+        <!-- Ad Containers -->
+        <div class="ads-section">
+            <h3>📢 Ad Units</h3>
+            <div class="ads-container">
+                <div class="ad-unit">
+                    <div class="ad-header">
+                        <span>Ad Slot #1</span>
+                        <span class="ad-status" id="adStatus1">Loading...</span>
+                    </div>
+                    <div id="monetag-ad-1" class="ad-display"></div>
+                </div>
+                <div class="ad-unit">
+                    <div class="ad-header">
+                        <span>Ad Slot #2</span>
+                        <span class="ad-status" id="adStatus2">Loading...</span>
+                    </div>
+                    <div id="monetag-ad-2" class="ad-display"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log Console -->
+        <div class="log-section">
+            <div class="log-header">
+                <h3>📋 System Logs</h3>
+                <button onclick="clearLogs()">🗑️ Clear</button>
+            </div>
+            <div class="log-container" id="logContainer">
+                <div class="log-entry">🚀 System initialized successfully</div>
+                <div class="log-entry">⏳ Waiting for rotation start command...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monetag SDK -->
+    <script src='//libtl.com/sdk.js' data-zone='9924417' data-sdk='show_9924417'></script>
+    
+    <!-- System Scripts -->
+    <script src="config.js"></script>
+    <script src="rotation-system.js"></script>
+    <script>
+        // Initialize system when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            window.rotationSystem = new RotationSystem();
+        });
+    </script>
+</body>
+</html>
